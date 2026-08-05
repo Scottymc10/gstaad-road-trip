@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="apple-mobile-web-app-title" content="Road Book">
+<link rel="apple-touch-icon" href="icon-roadbook.png">
+<link rel="icon" href="icon-roadbook.png">
+<title>Road Book — London · Gstaad · London · 12–17 August 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: only light;
+  --paper:#FFFFFF;
+  --card:#FFFFFF;
+  --ink:#121517;
+  --ink-2:#5A6165;
+  --rule:#D8DAD4;
+  --autoroute:#17457F;
+  --swiss:#0E6A4C;
+  --pass:#A6262B;
+  --local:#6E767A;
+  --rail:#4A3A6B;
+  --note:#9A6A12;
+  --disp:'Saira Condensed',system-ui,sans-serif;
+  --body:'IBM Plex Sans',system-ui,sans-serif;
+  --data:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:#FFFFFF !important;color-scheme:only light}
+body{
+  margin:0;background:#FFFFFF !important;color:#121517;
+  font-family:var(--body);font-size:15px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;forced-color-adjust:none;
+}
+.backdrop{position:fixed;inset:0;background:#FFFFFF;z-index:0;pointer-events:none}
+@media (prefers-color-scheme:dark){
+  html,body{background:#FFFFFF;color:#121517}
+  .dow,.plate h1{color:#121517}
+  .plate h1 span{color:#A6262B}
+}
+.wrap{max-width:920px;margin:0 auto;padding:0 18px 90px;position:relative;z-index:1;background:#FFFFFF}
+
+/* ---------- plate ---------- */
+.plate{padding:34px 0 22px;border-bottom:2px solid var(--ink)}
+.plate .eyebrow{font-family:var(--data);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-2)}
+.plate h1{font-family:var(--disp);font-weight:700;text-transform:uppercase;
+  letter-spacing:.02em;line-height:.92;font-size:clamp(38px,9vw,74px);margin:10px 0 4px}
+.plate h1 span{color:var(--pass)}
+.plate .sub{font-family:var(--disp);font-weight:500;letter-spacing:.06em;
+  text-transform:uppercase;font-size:clamp(14px,2.6vw,19px);color:var(--ink-2)}
+.totals{display:flex;flex-wrap:wrap;gap:26px;margin-top:22px}
+.totals div{min-width:92px}
+.totals dt{font-family:var(--data);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-2);margin-bottom:2px}
+.totals dd{margin:0;font-family:var(--disp);font-weight:600;font-size:26px;line-height:1}
+
+/* ---------- alert ---------- */
+.alert{border-left:3px solid var(--pass);padding:10px 0 10px 14px;margin:24px 0 0}
+.alert h4{font-family:var(--data);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--pass);margin:0 0 5px;font-weight:600}
+.alert p{margin:0;font-size:14px}
+
+/* ---------- day nav ---------- */
+nav{position:sticky;top:0;z-index:20;background:#FFFFFF;
+  border-bottom:1px solid var(--rule)}
+.navrow{max-width:920px;margin:0 auto;padding:9px 18px;display:flex;gap:6px;overflow-x:auto;
+  scrollbar-width:none}
+.navrow::-webkit-scrollbar{display:none}
+.navrow a{flex:0 0 auto;font-family:var(--disp);font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;font-size:13px;text-decoration:none;color:var(--ink-2);
+  padding:5px 11px;border:1px solid var(--rule);border-radius:2px;background:#FFFFFF}
+.navrow a:hover,.navrow a:focus-visible{color:var(--ink);border-color:var(--ink)}
+
+/* ---------- day card ---------- */
+.day{border-bottom:1px solid var(--rule);padding:34px 0 30px;scroll-margin-top:56px}
+.daydate{font-family:var(--data);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-2);margin-bottom:6px}
+.dayhead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.dow{font-family:var(--disp);font-weight:700;font-size:clamp(30px,6vw,46px);
+  text-transform:uppercase;letter-spacing:.03em;line-height:1}
+.route{font-family:var(--disp);font-weight:500;font-size:clamp(15px,3vw,21px);
+  text-transform:uppercase;letter-spacing:.05em;color:var(--ink-2)}
+.tagline{font-style:italic;color:var(--ink-2);margin:8px 0 0;font-size:14px}
+
+/* ---------- leg strip ---------- */
+.strip{margin:20px 0 6px}
+.summits{display:flex;height:22px;align-items:flex-end}
+.summits .s{position:relative;font-family:var(--data);font-size:10px;color:var(--pass);
+  text-align:center;white-space:nowrap}
+.summits .s b{font-weight:600}
+.bar{display:flex;height:11px;gap:2px}
+.bar span{display:block;border-radius:1px}
+.bar .autoroute{background:var(--autoroute)}
+.bar .swiss{background:var(--swiss)}
+.bar .pass{background:var(--pass)}
+.bar .local{background:var(--local)}
+.bar .rail{background:var(--rail)}
+.striplabel{display:flex;justify-content:space-between;margin-top:6px;
+  font-family:var(--data);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-2)}
+
+/* ---------- timing table ---------- */
+table{width:100%;border-collapse:collapse;margin-top:18px}
+th{font-family:var(--data);font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-2);text-align:left;font-weight:500;
+  padding:0 8px 6px 0;border-bottom:1px solid var(--rule)}
+td{padding:11px 8px 11px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+td.t{font-family:var(--data);font-size:12.5px;white-space:nowrap;color:var(--ink-2);width:62px}
+td.leg{font-weight:500}
+td.leg .cls{display:inline-block;width:7px;height:7px;border-radius:1px;margin-right:7px;
+  vertical-align:1px}
+td.leg small{display:block;font-weight:400;color:var(--ink-2);font-size:13px;margin-top:2px}
+td.km,td.dur{font-family:var(--data);font-size:12.5px;text-align:right;white-space:nowrap;width:52px}
+
+/* ---------- notes ---------- */
+.notes{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0}
+.note{border-left:2px solid var(--rule);padding:2px 16px 2px 13px;margin-bottom:14px}
+.note.book{border-left-color:var(--pass)}
+.note.warn{border-left-color:var(--note)}
+.note h4{font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-2);margin:0 0 4px;font-weight:500}
+.note p{margin:0;font-size:14px}
+.note a,.refblock a{color:var(--pass);text-decoration:none;border-bottom:1px solid currentColor}
+.note a:hover,.refblock a:hover{color:var(--ink)}
+.maps{display:inline-flex;align-items:center;gap:8px;margin-top:14px;
+  font-family:var(--disp);font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+  font-size:13px;text-decoration:none;color:#FFFFFF;background:var(--ink);
+  padding:9px 15px;border-radius:2px}
+.maps:hover,.maps:focus-visible{background:var(--autoroute)}
+.maps::after{content:"↗";font-size:12px}
+
+/* ---------- stay card ---------- */
+.stay{margin-top:26px;border-top:2px solid var(--ink);padding-top:16px}
+.stay h4{font-family:var(--data);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-2);margin:0 0 12px;font-weight:500}
+.stayart{border-radius:2px;overflow:hidden;line-height:0;margin-bottom:16px;border:1px solid var(--rule)}
+.stayart svg{width:100%;height:auto;display:block}
+.stayopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:20px}
+.stayopt{border-left:2px solid var(--rule);padding-left:13px}
+.stayopt.primary{border-left-color:var(--pass)}
+.stayopt .tag{font-family:var(--data);font-size:9.5px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-2)}
+.stayname{font-family:var(--disp);font-weight:600;text-transform:uppercase;letter-spacing:.03em;
+  font-size:20px;line-height:1.05;margin:4px 0 3px}
+.staymeta{font-family:var(--data);font-size:11.5px;color:var(--ink-2);margin-bottom:7px;line-height:1.45}
+.stayopt p{margin:0 0 10px;font-size:14px}
+.staylinks{display:flex;gap:8px;flex-wrap:wrap}
+.staylinks a{font-family:var(--disp);font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  font-size:11.5px;text-decoration:none;color:var(--ink);border:1px solid var(--ink);
+  padding:5px 10px;border-radius:2px}
+.staylinks a:hover,.staylinks a:focus-visible{background:var(--ink);color:#FFFFFF}
+
+/* ---------- reference ---------- */
+.ref{padding:36px 0 0}
+.ref h2{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+  font-size:clamp(24px,5vw,36px);margin:0 0 6px}
+.refgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:22px}
+.refblock h3{font-family:var(--data);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-2);font-weight:500;margin:0 0 8px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.refblock.urgent h3{color:var(--pass);border-bottom-color:var(--pass)}
+.refblock ul{margin:0;padding-left:16px}
+.refblock li{margin-bottom:7px;font-size:14px}
+.key{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px;font-family:var(--data);
+  font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.key i{display:inline-block;width:9px;height:9px;border-radius:1px;margin-right:6px}
+footer{margin-top:40px;padding-top:16px;border-top:2px solid var(--ink);
+  font-family:var(--data);font-size:11px;color:var(--ink-2);letter-spacing:.06em}
+
+@media print{
+  nav{display:none}
+  .day{page-break-inside:avoid;border-bottom:1px solid #999}
+  .maps{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+<nav><div class="navrow" id="nav"></div></nav>
+
+<div class="wrap">
+
+  <header class="plate">
+    <div class="eyebrow">Touring Road Book · 12–17 August 2026 · Scott &amp; Chiara</div>
+    <h1>London<br>Gstaad<br><span>London</span></h1>
+    <div class="sub">Six days · Étoges · Lake Annecy · Five alpine cols · Lavaux · Home via Troyes</div>
+    <dl class="totals">
+      <div><dt>Total distance</dt><dd>≈ 2,530 km</dd></div>
+      <div><dt>Driving time</dt><dd>≈ 30 h</dd></div>
+      <div><dt>Cols crossed</dt><dd>5</dd></div>
+      <div><dt>Longest day</dt><dd>Sun · 6h15</dd></div>
+    </dl>
+    <div class="alert">
+      <h4>Seven days out — mid-August peak</h4>
+      <p>All five nights confirmed and paid — £1,764. Nothing left to book but tables. Wednesday and Thursday are hotel dinners; Saturday in Gstaad, Sunday lunch in Lavaux and Sunday dinner in Troyes still need calls. Numbers are in each day.</p>
+    </div>
+  </header>
+
+  <main id="days"></main>
+
+  <section class="ref">
+    <h2>Before you go</h2>
+    <div class="refgrid" id="ref"></div>
+    <div class="key">
+      <span><i style="background:#17457F"></i>French autoroute</span>
+      <span><i style="background:#0E6A4C"></i>Swiss motorway</span>
+      <span><i style="background:#A6262B"></i>Col / mountain road</span>
+      <span><i style="background:#6E767A"></i>Main road</span>
+      <span><i style="background:#4A3A6B"></i>Le Shuttle</span>
+    </div>
+    <footer>Distances and times are planning estimates — verify live before each departure. Times are local (CET, UK +1) unless marked UK. All five nights are confirmed bookings; timings assume the Troyes stop on Sunday.</footer>
+  </section>
+
+</div>
+
+<script>
+const SCENES = {
+  champagne(){
+    let v="";
+    for(let i=0;i<36;i++){const x=i*24-40;
+      v+=`<line x1="${x}" y1="192" x2="${x+40}" y2="240" stroke="#6E8768" stroke-width="3" opacity=".5"/>`}
+    return `<svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="240" fill="#F6ECD9"/>
+      <circle cx="612" cy="74" r="33" fill="#E9C27A"/>
+      <path d="M0 146 L180 114 L360 140 L560 104 L800 134 L800 240 L0 240Z" fill="#B6C2A6"/>
+      <path d="M0 174 L200 146 L420 176 L640 144 L800 166 L800 240 L0 240Z" fill="#8CA37E"/>
+      <path d="M0 190 L260 174 L520 198 L800 176 L800 240 L0 240Z" fill="#7B9370"/>
+      ${v}</svg>`;
+  },
+  annecy(){
+    let r="";
+    for(let i=0;i<7;i++){const y=170+i*10;const w=120+i*60;
+      r+=`<rect x="${60+i*40}" y="${y}" width="${w}" height="3" fill="#FFFFFF" opacity=".16"/>`}
+    return `<svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="240" fill="#E7F0F3"/>
+      <path d="M0 116 L110 50 L188 96 L286 36 L392 100 L500 58 L602 106 L700 68 L800 112 L800 156 L0 156Z" fill="#A2B6C3"/>
+      <path d="M286 36 L322 74 L302 70 L286 84 L262 68 L248 74Z" fill="#FFFFFF" opacity=".85"/>
+      <path d="M0 130 L140 90 L260 128 L400 86 L540 126 L680 94 L800 128 L800 156 L0 156Z" fill="#7C96A8"/>
+      <rect y="156" width="800" height="84" fill="#54819A"/>
+      <rect y="156" width="800" height="8" fill="#48738A"/>
+      ${r}
+      <path d="M604 118 L604 154 L578 154Z" fill="#FBF8F1"/>
+      <rect x="572" y="154" width="38" height="5" rx="2" fill="#2E4956"/></svg>`;
+  },
+  chateau(){
+    let t="";
+    for(let i=0;i<14;i++){const x=i*62+10;
+      t+=`<circle cx="${x}" cy="${112-((i*23)%18)}" r="${26+((i*13)%10)}" fill="#67795A"/>`}
+    return `<svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="240" fill="#F2ECDC"/>
+      ${t}
+      <rect y="140" width="800" height="34" fill="#7E9160"/>
+      <rect x="300" y="80" width="200" height="62" fill="#E2D7C2"/>
+      <path d="M288 82 L400 44 L512 82Z" fill="#4E5A64"/>
+      <rect x="252" y="94" width="52" height="48" fill="#D6CAB4"/>
+      <path d="M244 96 L278 62 L312 96Z" fill="#4E5A64"/>
+      <rect x="496" y="94" width="52" height="48" fill="#D6CAB4"/>
+      <path d="M488 96 L522 62 L556 96Z" fill="#4E5A64"/>
+      <rect x="330" y="100" width="16" height="26" fill="#8B8271"/>
+      <rect x="392" y="100" width="16" height="26" fill="#8B8271"/>
+      <rect x="454" y="100" width="16" height="26" fill="#8B8271"/>
+      <rect x="270" y="110" width="14" height="22" fill="#8B8271"/>
+      <rect x="514" y="110" width="14" height="22" fill="#8B8271"/>
+      <rect y="174" width="800" height="66" fill="#6E8894"/>
+      <rect x="300" y="176" width="200" height="46" fill="#E2D7C2" opacity=".22"/>
+      <path d="M288 174 L400 210 L512 174Z" fill="#4E5A64" opacity=".2"/>
+      <rect x="120" y="194" width="180" height="3" fill="#FFFFFF" opacity=".18"/>
+      <rect x="420" y="212" width="240" height="3" fill="#FFFFFF" opacity=".15"/></svg>`;
+  },
+  gstaad(){
+    let f="";
+    for(let i=0;i<26;i++){const x=i*32+6,h=26+((i*37)%18);
+      f+=`<path d="M${x} ${182-h} L${x+13} 182 L${x-13} 182Z" fill="#3F5B49"/>`}
+    return `<svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="240" fill="#ECF1F3"/>
+      <path d="M0 124 L120 44 L212 96 L322 28 L432 100 L522 56 L642 104 L742 60 L800 108 L800 184 L0 184Z" fill="#A8B7C2"/>
+      <path d="M322 28 L360 66 L338 62 L322 76 L298 60 L284 66Z" fill="#FFFFFF" opacity=".9"/>
+      <path d="M742 60 L770 92 L752 88 L742 98 L724 86 L714 92Z" fill="#FFFFFF" opacity=".8"/>
+      ${f}
+      <path d="M0 186 L800 178 L800 240 L0 240Z" fill="#87A06F"/>
+      <path d="M96 236 L96 202 L164 202 L164 236Z" fill="#EFE6D4"/>
+      <path d="M78 204 L130 178 L182 204Z" fill="#6B4E3A"/>
+      <path d="M604 238 L604 210 L660 210 L660 238Z" fill="#EFE6D4"/>
+      <path d="M590 212 L632 190 L674 212Z" fill="#6B4E3A"/></svg>`;
+  },
+  oldtown(){
+    let h="";
+    const cols=["#E7DCC8","#DCCFB6","#D2C3A8","#E2D5BF"];
+    for(let i=0;i<8;i++){
+      const x=i*100,top=126+((i*31)%24);
+      h+=`<path d="M${x} ${top} L${x+50} ${top-42} L${x+100} ${top} L${x+100} 240 L${x} 240Z" fill="${cols[i%4]}"/>`;
+      h+=`<line x1="${x}" y1="${top}" x2="${x+100}" y2="${top}" stroke="#7A6553" stroke-width="3"/>`;
+      h+=`<line x1="${x+50}" y1="${top-42}" x2="${x+50}" y2="240" stroke="#7A6553" stroke-width="2.5" opacity=".45"/>`;
+      h+=`<rect x="${x+20}" y="${top+28}" width="18" height="28" fill="#8B7B66"/>`;
+      h+=`<rect x="${x+62}" y="${top+28}" width="18" height="28" fill="#8B7B66"/>`;
+    }
+    return `<svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="240" fill="#F4EADA"/>
+      <circle cx="132" cy="66" r="30" fill="#EBC886"/>
+      <path d="M470 42 L486 6 L502 42Z" fill="#A99A82"/>
+      <rect x="470" y="42" width="32" height="110" fill="#B8AA92"/>
+      ${h}
+      <rect y="232" width="800" height="8" fill="#9C8E79"/></svg>`;
+  }
+};
+
+const STAYS = {
+  wed:{art:"chateau",label:"Wednesday 12 August · Champagne",options:[
+    {tag:"Confirmed · £246",name:"Château d'Étoges",
+     meta:"Étoges, south of Épernay · moated 17th-century château · restaurant and spa on site · serves daily",
+     note:"Reserve the dinner table now if you haven't — a château restaurant in August fills from its own rooms first. Étoges is a small village, so there's no walk-out alternative if the kitchen is full. The moat and grounds are worth twenty minutes before you eat.",
+     url:"",q:"Chateau d'Etoges Champagne"}]},
+
+  thu:{art:"annecy",label:"Thursday 13 August · Lake Annecy",options:[
+    {tag:"Confirmed · £397",name:"Le Palace de Menthon",
+     meta:"Menthon-Saint-Bernard · Belle Époque, 1906–11 · private beach, marina, heated pool",
+     note:"Ring and confirm which side the room faces — at this rate it should be lake-view rather than forest, and it's worth asking for a higher floor while you're on the phone. Reserve the restaurant at the same time; mid-August fills it from the rooms.",
+     url:"https://www.palacedementhon.com/en/",q:"Le Palace de Menthon Menthon-Saint-Bernard"}]},
+
+  fri:{art:"gstaad",label:"Friday 14 &amp; Saturday 15 August · Gstaad",options:[
+    {tag:"Confirmed · £824 both nights",name:"Hotel Arc-en-ciel",
+     meta:"Egglistrasse 24 · by the Eggli lift · own restaurant · £339 Fri + £485 Sat",
+     note:"Two separate reservations for consecutive nights — ring them and have the stay linked and the room held, or you'll be moving luggage on Saturday morning. Ask about parking at the same time. Roughly ten minutes' walk from the promenade.",
+     url:"",q:"Hotel Arc-en-ciel Gstaad"}]},
+
+  sun:{art:"oldtown",label:"Sunday 16 August · Troyes",options:[
+    {tag:"Confirmed · £205",name:"La Licorne Hôtel & Spa, MGallery",
+     meta:"20 bis Quai Dampierre, Troyes · check-in from 15:00, out by 12:00 · Classic Double · underground spa and pool",
+     note:"Parking requested and chargeable at €30 for the night — the only hotel on the trip that charges. Check the garage height on arrival rather than committing to the ramp blind. Don't count on the pool: access is reported as an hour by prior booking, and you're only on site overnight.",
+     url:"",q:"La Licorne Hotel Spa Troyes MGallery"}]}
+};
+
+const DAYS = [
+  {
+    id:"wed", dow:"Wed", date:"12 August 2026", route:"London → Château d'Étoges, Champagne",
+    tagline:"Get south while the light lasts. The whole point of this night is that tomorrow is short.",
+    depart:"12:00 UK", arrive:"19:00",
+    legs:[
+      {t:"12:00", cls:"local", name:"London → Folkestone, Eurotunnel", note:"M20. Check in 45 min before departure.", km:120, dur:"1h30"},
+      {t:"13:50", cls:"rail", name:"Le Shuttle · Folkestone → Calais", note:"35 min crossing. Clocks go forward an hour on arrival.", km:50, dur:"0h35"},
+      {t:"15:40", cls:"autoroute", name:"Calais → Reims → Épernay → Étoges", note:"A26 as far as Reims, then the N51 south through Épernay and the D933 east into the village. Tolls ≈ €25.", km:335, dur:"3h15"}
+    ],
+    notes:[
+      {k:"book", h:"Reserve", p:"Dinner at the château, booked direct: <a href=\"tel:+33326593008\">+33 3 26 59 30 08</a>. Étoges is a village of a few hundred people — if their kitchen is full there is no plan B within twenty minutes. Book for 20:00."},
+      {k:"", h:"Fuel", p:"Don't fill in the UK. First autoroute stop south of Calais; SP98 is standard at French motorway stations."},
+      {k:"warn", h:"Leave by noon", p:"This is twenty minutes longer than the original Sacy routing and the last hour is D-roads, not autoroute. Every hour of slippage from London lands directly on dinner."}
+    ],
+    map:{o:"London, UK", w:["Eurotunnel Folkestone Terminal","Calais, France","Épernay, France"], d:"Chateau d'Etoges, Etoges, France"}
+  },
+  {
+    id:"thu", dow:"Thu", date:"13 August 2026", route:"Champagne → Menthon-Saint-Bernard",
+    tagline:"A motorway day, but a civilised one. Long enough to matter, short enough to swim at the end.",
+    depart:"09:00", arrive:"16:00",
+    legs:[
+      {t:"09:00", cls:"local", name:"Étoges → Sézanne → Romilly → Troyes", note:"D-roads down through the Sézannais rather than doubling back to the A26. Shorter than the Sacy routing would have been. Coffee in the medieval quarter.", km:115, dur:"1h35"},
+      {t:"11:00", cls:"autoroute", name:"Troyes → Dijon", note:"A5 to Langres, A31 down to Dijon.", km:165, dur:"1h35"},
+      {t:"12:40", cls:"autoroute", name:"Dijon → Bourg-en-Bresse", note:"A39. Lunch here — 45 minutes, no more. Poulet de Bresse if you're doing it properly.", km:145, dur:"1h25"},
+      {t:"14:50", cls:"autoroute", name:"Bourg-en-Bresse → Menthon", note:"A40 east, A41 into Annecy, then the lakeside road round the east shore.", km:125, dur:"1h20"}
+    ],
+    notes:[
+      {k:"", h:"Tolls", p:"≈ €60 for the day. Contactless works — use the CB lanes, avoid the orange 't' télépéage-only gates."},
+      {k:"book", h:"The evening", p:"Swim on arrival. Drive up to the Col de la Forclaz de Montmin around 19:30 — sunset is close to 21:00 in mid-August — then eat back at the hotel at 20:30. Reserve the restaurant in advance on <a href=\"tel:+33450648300\">+33 4 50 64 83 00</a>; they ask for it and August fills them from the rooms."},
+      {k:"warn", h:"August on the lake", p:"The east-shore road through Veyrier and Menthon is slow in season. Add twenty minutes to that final leg and don't fight it."},
+      {k:"warn", h:"Friday starts at 08:30", p:"Ask Menthon for breakfast from 07:30 and don't make it a late night — Friday has a four o'clock deadline at the far end of four mountain passes."}
+    ],
+    map:{o:"Sacy, France", w:["Troyes, France","Dijon, France","Bourg-en-Bresse, France"], d:"Le Palace de Menthon, Menthon-Saint-Bernard, France"}
+  },
+  {
+    id:"fri", dow:"Fri", date:"14 August 2026", route:"Annecy → Aravis → Chamonix → Forclaz → Gstaad",
+    tagline:"The day the trip is built around — now with a hard deadline at the end of it. Party at four.",
+    depart:"08:30", arrive:"15:05",
+    legs:[
+      {t:"08:30", cls:"pass", name:"Menthon → Thônes → La Clusaz → Col des Aravis", note:"Tight and wooded, then it opens. Coffee at the col with Mont Blanc in front of you — twenty-five minutes, then move.", km:50, dur:"1h15", summit:"Aravis 1,486 m"},
+      {t:"10:10", cls:"local", name:"Flumet → Megève → Sallanches → Chamonix", note:"Faster and less interesting. Stay off the Mont Blanc tunnel approach — the freight queue backs onto the N205 and it is the one thing that could cost you the deadline.", km:55, dur:"1h10"},
+      {t:"11:20", cls:"local", name:"Chamonix — lunch", note:"An hour, not ninety minutes, and early at 11:20. Somewhere that serves from opening rather than a kitchen that starts at noon.", km:0, dur:"1h00"},
+      {t:"12:20", cls:"pass", name:"Chamonix → Col des Montets → border → Col de la Forclaz → Martigny", note:"Vignette at Le Châtelard — ten minutes, allowed for. The Forclaz descent into the Rhône valley is still the best sequence of the week.", km:40, dur:"1h00", summit:"Montets 1,461 m · Forclaz 1,527 m"},
+      {t:"13:30", cls:"swiss", name:"Martigny → Aigle", note:"A9 along the valley floor. Dull, quick, necessary.", km:35, dur:"0h30"},
+      {t:"14:00", cls:"pass", name:"Aigle → Le Sépey → Col du Pillon → Gstaad", note:"Climbs hard out of Aigle, then drops through Gsteig into the Saanenland. Arrive 15:05.", km:45, dur:"1h05", summit:"Pillon 1,546 m"}
+    ],
+    notes:[
+      {k:"book", h:"Ring Arc-en-ciel today", p:"Standard check-in is usually 15:00 and you arrive at 15:05. Ask them to have the room ready early, or at minimum to hold your bags and give you somewhere to change. Arriving on time to a room that isn't ready is the same as arriving late."},
+      {k:"warn", h:"Chamonix in August", p:"The valley clogs late morning and late afternoon, and it's the one thing that could cost you the four o'clock. If you're behind schedule at Chamonix, take lunch to go rather than sitting down — that's the hour you can recover."},
+      {k:"", h:"What not to cut", p:"If time gets tight, shorten the lunch or the coffee at the Aravis. Don't skip the Aravis itself — it's the best road of the trip and taking the motorway to Chamonix instead only saves an hour you'd rather not have bought that way."},
+      {k:"book", h:"Vignette", p:"CHF 40 at the Le Châtelard border post, card accepted. Windscreen sticker, valid the whole calendar year. You need it for the A9 leg."},
+      {k:"warn", h:"Swiss speed limits", p:"120 motorway, 80 main road, 50 in villages, and enforcement is unforgiving — fines scale with income. The cameras are where the road opens up."}
+    ],
+    map:{o:"Menthon-Saint-Bernard, France", w:["Col des Aravis, France","Megève, France","Chamonix-Mont-Blanc, France","Col de la Forclaz, Trient, Switzerland","Aigle, Switzerland","Col du Pillon, Switzerland"], d:"Hotel Arc-en-ciel, Gstaad, Switzerland"}
+  },
+  {
+    id:"sat", dow:"Sat", date:"15 August 2026", route:"Gstaad — a slow morning, then Lauenen",
+    tagline:"Built around a late night before. One thing in the afternoon, not two, and dinner booked so you don't have to think.",
+    depart:"13:30", arrive:"—",
+    legs:[
+      {t:"—", cls:"local", name:"Morning: nothing at all", note:"Hotel breakfast typically stops around 10:00 — worth asking the night before whether they'll stretch it. If not, the Gstaad promenade is five minutes away and serves coffee all morning.", km:0, dur:"—"},
+      {t:"13:30", cls:"local", name:"Gstaad → Lauenensee", note:"Twelve minutes up a dead-end valley. Walk the lake — about an hour, flat, no climbing required. The right shape of activity for the day after.", km:12, dur:"0h20"},
+      {t:"15:30", cls:"local", name:"Lauenen → Gstaad", note:"Back down the same road.", km:12, dur:"0h20"},
+      {t:"17:00", cls:"local", name:"Fuel + wash in Saanen", note:"Top up here. Swiss fuel is usually cheaper than French — cross the border full tomorrow.", km:8, dur:"0h15"}
+    ],
+    notes:[
+      {k:"", h:"The Jaun Pass, if you're up early", p:"Saanenmöser → Zweisimmen → Jaun Pass → Charmey and back is 110 km and 2h30. It's an alternative to Lauenen, not an addition — pick one. Only worth it if you're moving before noon."},
+      {k:"warn", h:"15 August", p:"Assumption Day. Gstaad is in canton Bern, which doesn't observe it, so the village runs normally — but the Jaun Pass drops you into canton Fribourg, which does. Expect Charmey busy and some shops shut."},
+      {k:"book", h:"Dinner — book this one", p:"Arc-en-ciel's own restaurant is the low-effort answer: <a href=\"tel:+41337484343\">+41 33 748 43 43</a>. Going out: Leonard's at Le Grand Bellevue <a href=\"tel:+41337480000\">+41 33 748 00 00</a> (Michelin star, last sitting 21:00), The Mansard <a href=\"tel:+41337484000\">+41 33 748 40 00</a> (until 21:30), or Le Grand & La Terrasse at the Palace <a href=\"tel:+41337485000\">+41 33 748 50 00</a> (until 22:30)."},
+      {k:"warn", h:"Don't repeat Friday", p:"Sunday leaves at 09:30 and is the longest day of the trip at 6h15. Saturday can be late; it can't be Friday again."}
+    ],
+    map:{o:"Gstaad, Switzerland", w:["Lauenensee, Switzerland","Jaunpass, Switzerland"], d:"Gstaad, Switzerland"}
+  },
+  {
+    id:"sun", dow:"Sun", date:"16 August 2026", route:"Gstaad → Col des Mosses → Lavaux → Troyes",
+    tagline:"The longest day of the trip, and it reads like the gentlest. Two hours of it are lunch.",
+    depart:"09:30", arrive:"18:45",
+    legs:[
+      {t:"09:30", cls:"pass", name:"Gstaad → Col des Mosses → Aigle → Saint-Saphorin", note:"A different pass from Friday's, which is the point. Terraced vineyards drop straight into Lake Geneva at the end.", km:70, dur:"1h30", summit:"Mosses 1,445 m"},
+      {t:"11:15", cls:"local", name:"Lavaux — lunch", note:"Two hours on a terrace above the lake. The last unhurried thing you do.", km:0, dur:"2h00"},
+      {t:"13:30", cls:"swiss", name:"Lavaux → Lausanne → Vallorbe → border", note:"A9/A1, then off the motorway for the Jura crossing at Vallorbe. Fill up before you cross.", km:80, dur:"1h00"},
+      {t:"14:40", cls:"autoroute", name:"Pontarlier → Besançon → Dijon → Troyes", note:"A36 then A31/A5. Tolls resume at the French border.", km:400, dur:"3h45"}
+    ],
+    notes:[
+      {k:"book", h:"Lunch in Lavaux — 11:30", p:"Auberge de Rivaz <a href=\"tel:+41219461055\">+41 21 946 10 55</a> (Sun 11:30–15:00, terrace over the lake, on your route) or Café du Raisin at Saint-Saphorin <a href=\"tel:+41219211327\">+41 21 921 13 27</a> (opens 10:30, prettier village). Le Deck at Chexbres has the bigger panorama but doesn't open until 12:00 and parking is difficult — costs you half an hour."},
+      {k:"book", h:"Dinner in Troyes — 20:00", p:"The town's two best kitchens, Octave and Le Petit Basson, are both shut on Sundays. Open and worth having: Le Puits des Gourmets <a href=\"tel:+33675764780\">+33 6 75 76 47 80</a> (Lebanese, exceptional reviews, from 18:30), Le Tablier <a href=\"tel:+33351597802\">+33 3 51 59 78 02</a> (French brasserie, until 22:30), L'Illustré <a href=\"tel:+33325400088\">+33 3 25 40 00 88</a>."},
+      {k:"warn", h:"The 16th", p:"The weekend after Assumption is one of the heaviest travel weekends in France. Build in slack and don't plan the evening tightly."},
+      {k:"book", h:"Sunday dinner in Troyes", p:"The hotel doesn't list a restaurant, and this is a Sunday evening in August. Book somewhere in the medieval quarter before you leave Gstaad — it's a ten-minute walk from Quai Dampierre and the alternative is a closed-door tour of the old town at half past eight."}
+    ],
+    map:{o:"Gstaad, Switzerland", w:["Col des Mosses, Switzerland","Saint-Saphorin, Lavaux, Switzerland","Pontarlier, France","Dijon, France"], d:"Troyes, France"}
+  },
+  {
+    id:"mon", dow:"Mon", date:"17 August 2026", route:"Troyes → London",
+    tagline:"The dividend of stopping at Troyes. Home in daylight, with a proper lunch on the way.",
+    depart:"09:30", arrive:"16:30 UK",
+    legs:[
+      {t:"09:30", cls:"autoroute", name:"Troyes → Arras", note:"A26 the whole way. Fill up before you get near Calais.", km:290, dur:"2h45"},
+      {t:"12:30", cls:"local", name:"Arras — lunch", note:"An hour on the Grand-Place. An hour from the tunnel and a far better stop than anything nearer the coast.", km:0, dur:"1h00"},
+      {t:"13:30", cls:"autoroute", name:"Arras → Calais terminal", note:"A26. Arrive 45 min before your crossing.", km:110, dur:"1h05"},
+      {t:"15:20", cls:"rail", name:"Le Shuttle · Calais → Folkestone", note:"Clocks go back an hour.", km:50, dur:"0h35"},
+      {t:"15:00 UK", cls:"local", name:"Folkestone → London", note:"M20. Worse than everything that preceded it.", km:120, dur:"1h30"}
+    ],
+    notes:[
+      {k:"", h:"Why this day is easy", p:"Because Sunday absorbed the extra hour. Stopping in Burgundy instead would have made this a 5h50 slog with lunch squeezed in — Troyes bought it back."}
+    ],
+    map:{o:"Troyes, France", w:["Arras, France","Eurotunnel Calais Terminal"], d:"London, UK"}
+  }
+];
+
+const REF = [
+  {h:"Still to book", urgent:true, items:[
+    "Sunday lunch in Lavaux — Auberge de Rivaz or Café du Raisin, 11:30. An August Sunday terrace above the lake is not a walk-in.",
+    "Sunday dinner in Troyes — the two best places are closed. Le Puits des Gourmets is the pick.",
+    "Saturday dinner in Gstaad, holiday weekend.",
+    "Ring Arc-en-ciel: link the two reservations into one stay and hold the same room. Parking is already sorted.",
+    "Le Shuttle both ways if not already done — and leave London by noon on the 12th.",
+    "Ask Arc-en-ciel how late breakfast runs on Saturday."
+  ]},
+  {h:"Book this week", items:[
+    "Lunch in Lavaux for Sunday — a terrace table above the lake on an August Sunday is not a walk-in.",
+    "Saturday dinner in Gstaad, holiday weekend.",
+    "Lunch in Chamonix for Friday, or accept queueing at 12:15 in peak season.",
+    "Dinner at the last-night hotel — confirm the kitchen is open on a Sunday before you rely on it."
+  ]},
+  {h:"Documents & kit", items:[
+    "Hi-vis vest in the cabin, not the boot — France fines you for having it in the boot.",
+    "Warning triangle, headlamp beam deflectors, UK identifier on the plate or a UK sticker.",
+    "V5C, licence, insurance certificate. Confirm the policy covers Switzerland — it's outside the EU and sometimes excluded by default.",
+    "Crit'Air isn't needed on this routing, and there's no longer time to order one, so don't divert through a major city."
+  ]},
+  {h:"Money on the road", items:[
+    "French tolls ≈ €150 for the round trip. Contactless card works at every gate.",
+    "Swiss vignette CHF 40, bought at Le Châtelard on Friday. Annual, not daily.",
+    "Swiss fuel is usually cheaper than French — cross into France with a full tank on Sunday.",
+    "SP98 is standard at French and Swiss motorway stations. No need to hunt for it.",
+    "Parking is free and unreserved at Étoges, Menthon and Arc-en-ciel. Only La Licorne charges — €30 for the night, already requested."
+  ]},
+  {h:"Passes & weather", items:[
+    "Aravis, Montets, Forclaz, Pillon, Mosses and Jaun are all open in August. Snow closure isn't a risk; afternoon thunderstorms are.",
+    "Expect 10–15°C cooler at 1,500 m than on the lake. One proper layer each, not a jumper.",
+    "Sunset is close to 21:00 across the whole trip, which is why Thursday's Forclaz run at 19:30 works."
+  ]},
+  {h:"Pack", items:[
+    "Swim gear accessible on Thursday, not buried — you'll want it within ten minutes of arriving.",
+    "Walking shoes for the Lauenen lake circuit.",
+    "One jacket-required dinner outfit each — Menthon and the last night both expect it.",
+    "Sunglasses that work in flat alpine light. Emergency number across all three countries is 112."
+  ]}
+];
+
+function mapsUrl(m){
+  const u = new URL("https://www.google.com/maps/dir/");
+  u.searchParams.set("api","1");
+  u.searchParams.set("origin",m.o);
+  u.searchParams.set("destination",m.d);
+  if(m.w && m.w.length) u.searchParams.set("waypoints", m.w.join("|"));
+  return u.toString();
+}
+
+const daysEl = document.getElementById("days");
+const navEl  = document.getElementById("nav");
+
+DAYS.forEach(d=>{
+  const strip = d.legs.filter(l=>l.km>0);
+  const stripTotal = strip.reduce((a,l)=>a+l.km,0);
+
+  const summits = strip.map(l=>
+    `<div class="s" style="flex:${l.km} 1 0">${l.summit?`<b>▲</b> ${l.summit}`:""}</div>`
+  ).join("");
+
+  const bars = strip.map(l=>
+    `<span class="${l.cls}" style="flex:${l.km} 1 0" title="${l.name}"></span>`
+  ).join("");
+
+  const rows = d.legs.map(l=>`
+    <tr>
+      <td class="t">${l.t}</td>
+      <td class="leg"><span class="cls" style="background:var(--${l.cls})"></span>${l.name}
+        <small>${l.note}</small></td>
+      <td class="km">${l.km?l.km+" km":"—"}</td>
+      <td class="dur">${l.dur}</td>
+    </tr>`).join("");
+
+  const notes = d.notes.map(n=>`
+    <div class="note ${n.k}"><h4>${n.h}</h4><p>${n.p}</p></div>`).join("");
+
+  const s = STAYS[d.id];
+  let stayHTML = "";
+  if(s){
+    const opts = s.options.map((o,i)=>{
+      const site = o.url ? `<a href="${o.url}" target="_blank" rel="noopener">Hotel site</a>` : "";
+      const map = `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.q)}" target="_blank" rel="noopener">Map</a>`;
+      return `<div class="stayopt ${i===0?"primary":""}">
+        <div class="tag">${o.tag}</div>
+        <div class="stayname">${o.name}</div>
+        <div class="staymeta">${o.meta}</div>
+        <p>${o.note}</p>
+        <div class="staylinks">${site}${map}</div>
+      </div>`;
+    }).join("");
+    stayHTML = `<div class="stay">
+      <h4>${s.label}</h4>
+      <div class="stayart">${SCENES[s.art]()}</div>
+      <div class="stayopts">${opts}</div>
+    </div>`;
+  }
+
+  const sec = document.createElement("section");
+  sec.className = "day";
+  sec.id = d.id;
+  sec.innerHTML = `
+    <div class="daydate">${d.date}</div>
+    <div class="dayhead">
+      <span class="dow">${d.dow}</span>
+      <span class="route">${d.route}</span>
+    </div>
+    <p class="tagline">${d.tagline}</p>
+
+    <div class="strip">
+      <div class="summits">${summits}</div>
+      <div class="bar">${bars}</div>
+      <div class="striplabel">
+        <span>Depart ${d.depart}</span>
+        <span>${stripTotal} km</span>
+        <span>Arrive ${d.arrive}</span>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>Time</th><th>Leg</th><th style="text-align:right">Dist</th><th style="text-align:right">Run</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+
+    <div class="notes">${notes}</div>
+    <a class="maps" href="${mapsUrl(d.map)}" target="_blank" rel="noopener">Open ${d.dow} route</a>
+    ${stayHTML}
+  `;
+  daysEl.appendChild(sec);
+
+  const a = document.createElement("a");
+  a.href = "#"+d.id;
+  a.textContent = d.dow;
+  navEl.appendChild(a);
+});
+
+document.getElementById("ref").innerHTML = REF.map(b=>`
+  <div class="refblock ${b.urgent?"urgent":""}"><h3>${b.h}</h3><ul>${b.items.map(i=>`<li>${i}</li>`).join("")}</ul></div>
+`).join("");
+</script>
+</body>
+</html>
