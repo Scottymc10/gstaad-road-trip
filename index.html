@@ -207,7 +207,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--rule);
     <h1>Six Days<br>to <em>Gstaad</em></h1>
     <div class="ornament"><i></i><b>12–17 August 2026</b><i></i></div>
     <div class="countdown" id="countdown"></div>
-    <p class="intro">Champagne, Lake Annecy, five mountain passes, a weekend in the Swiss Alps and lunch on a terrace above Lake Geneva — then home through a medieval town in the middle of France.</p>
+    <p class="intro">Champagne, Lake Annecy, five mountain passes, a weekend in the Swiss Alps — and a last lunch on a terrace above Lake Geneva before your flight out on Sunday.</p>
     <div class="coverart" id="coverart"></div>
   </header>
 
@@ -331,20 +331,21 @@ const PLACES={
  etoges:{n:"Étoges",lat:48.88,lon:3.85,anchor:"start",dx:11,dy:4},
  troyes:{n:"Troyes",lat:48.30,lon:4.08,anchor:"end",dx:-11,dy:12},
  dijon:{n:"Dijon",lat:47.32,lon:5.04,minor:true,anchor:"start",dx:8,dy:3},
- besancon:{n:"Besançon",lat:47.24,lon:6.02,minor:true,anchor:"start",dx:8,dy:3},
+ geneva:{n:"Geneva",lat:46.24,lon:6.11,anchor:"end",dx:-11,dy:13},
+ bourg:{n:"Bourg-en-Bresse",lat:46.20,lon:5.23,minor:true,anchor:"end",dx:-8,dy:11},
  menthon:{n:"Menthon",lat:45.86,lon:6.19,anchor:"end",dx:-11,dy:4},
  gstaad:{n:"Gstaad",lat:46.47,lon:7.29,anchor:"start",dx:11,dy:4},
  lavaux:{n:"Lavaux",lat:46.48,lon:6.83,minor:true,anchor:"end",dx:-8,dy:-4}
 };
 const OUT=["london","calais","etoges","dijon","menthon","gstaad"];
-const BACK=["gstaad","lavaux","besancon","dijon","troyes","arras","calais","london"];
+const BACK=["gstaad","lavaux","geneva","bourg","dijon","troyes","arras","calais","london"];
 const STOPS=[
  {k:"etoges",day:1,d:"Wed 12",p:"Étoges, Champagne",s:"London, under the Channel, and south"},
  {k:"menthon",day:2,d:"Thu 13",p:"Menthon-Saint-Bernard",s:"Through Burgundy to Lake Annecy"},
  {k:"gstaad",day:3,d:"Fri 14",p:"Gstaad",s:"Four passes, France into Switzerland"},
  {k:"gstaad",day:4,d:"Sat 15",p:"Gstaad",s:"A slow day and an alpine lake"},
- {k:"troyes",day:5,d:"Sun 16",p:"Troyes",s:"Lavaux, Lake Geneva, back into France"},
- {k:"london",day:6,d:"Mon 17",p:"London",s:"Home by late afternoon"}
+ {k:"geneva",day:5,d:"Sun 16",p:"Lavaux, then Geneva",s:"Lunch over the lake, then your flight"},
+ {k:"london",day:6,d:"Mon 17",p:"Portugal",s:"You land Sunday night; Scott drives home"}
 ];
 
 const PASSES=[
@@ -402,22 +403,22 @@ const DAYS=[
       "Walking shoes worth having for this one."],
   sleep:{name:"Hotel Arc-en-ciel, Gstaad",note:"Second night. Same room."}},
  {n:"05",when:"Sunday<br>16 August",art:"lavaux",caption:"The Lavaux terraces above Lake Geneva",
-  title:"Lunch above <em>Lake Geneva</em>",
-  lede:"One last mountain pass in the morning, and then the road drops into vineyards that fall in terraces straight down to the water. We eat there. After that it's a long afternoon of driving back into France.",
-  car:6.2,carLabel:"About 6 hours in the car",arrive:"Arrive around 7pm",
+  title:"Lunch above <em>Lake Geneva</em>, then your flight",
+  lede:"One last mountain pass in the morning, and then the road drops into vineyards that fall in terraces straight down to the water. We eat there, slowly. After that it's only forty minutes along the lake to the airport — the shortest driving day of the trip apart from Saturday.",
+  car:2.6,carLabel:"About 2h35 in the car",arrive:"Geneva by 2:45pm",
   hl:["<b>Col des Mosses</b> early — a different pass from Friday's, which is deliberate.",
-      "Lunch at half eleven in <b>Lavaux</b>: eight hundred years of terraced vineyards dropping into Lake Geneva, and on the UNESCO list. Two hours on a terrace over the water.",
-      "Then over the Jura and back across the border into France.",
-      "<b>Troyes</b> at the end — a five-star hotel with a spa, in a town of leaning half-timbered houses.",
-      "The longest day of the trip. Worth bringing something to read or listen to."],
-  sleep:{name:"La Licorne, Troyes",note:"Five-star on the canal, two minutes from the old town."}},
+      "Lunch at half eleven in <b>Lavaux</b>: eight hundred years of terraced vineyards dropping into Lake Geneva, and on the UNESCO list. Two hours on a terrace over the water, and no rush at all.",
+      "Then along the north shore through Lausanne to <b>Geneva Airport</b> — about an hour.",
+      "Dropped around quarter to three, so anything from about quarter to five works. Mid-August Sunday, so allow the full two hours.",
+      "Keep your passport and case somewhere reachable — they want to come out at Geneva, not from under everything else."],
+  sleep:{name:"Portugal, Sunday evening",label:"Where you land",note:"Wheels up from Geneva, and you're there the same night."}},
  {n:"06",when:"Monday<br>17 August",art:"oldtown",caption:"The Grand-Place, Arras",
-  title:"Home, with a <em>proper lunch</em> on the way",
-  lede:"The easy way back — which is exactly why we stopped at Troyes rather than further south. Home in daylight, with time to spare.",
-  car:5.3,carLabel:"About 5 hours in the car",arrive:"Home late afternoon",
-  hl:["A straight run north on the A26.",
-      "Lunch on the <b>Grand-Place at Arras</b> — Flemish-Baroque façades on all four sides, and an hour from the tunnel.",
-      "Crossing in the afternoon, and London by around half four."],
+  title:"And then — <em>separate ways</em>",
+  lede:"You'll be in Portugal by Sunday night. Scott carries on north from Geneva to Troyes, arriving around seven, and drives home on Monday — so if you want to know where he is on the 17th, it's somewhere on the A26 with a sandwich.",
+  noHours:true,
+  hl:["Geneva to Troyes is about four hours, through Bourg-en-Bresse and Dijon.",
+      "Monday is a straight run north with lunch on the <b>Grand-Place at Arras</b>, and London by around half four.",
+      "Five hotels, five mountain passes, and one very good Friday between us."],
   sleep:null}
 ];
 
@@ -434,7 +435,8 @@ const PACK=[
    "A charger that reaches the passenger seat."]},
  {h:"Worth knowing",items:["Five hotels in six nights, so we live out of the bags. Only Gstaad is two nights.",
    "Everything is booked and paid for. Only restaurant tables left.",
-   "Friday is the early one — half eight, because the party starts at four. Sunday is half nine."]}
+   "Friday is the early one — half eight, because the party starts at four.",
+   "Passport, boarding pass and your case reachable on Sunday — you get out at Geneva, the car carries on to France."]}
 ];
 
 /* ---------- countdown ---------- */
@@ -497,8 +499,8 @@ const DAY_HOURS=14;
 document.getElementById("days").innerHTML=DAYS.map((d,i)=>{
   const free=Math.max(DAY_HOURS-d.car,1);
   const sleep=d.sleep
-    ?`<div class="sleep"><span class="smallcaps">Where we sleep</span><strong>${d.sleep.name}</strong><p>${d.sleep.note}</p></div>`
-    :`<div class="sleep"><span class="smallcaps">Where we sleep</span><strong>Home</strong><p>Two and a half thousand kilometres, five mountain passes, one car.</p></div>`;
+    ?`<div class="sleep"><span class="smallcaps">${d.sleep.label||"Where we sleep"}</span><strong>${d.sleep.name}</strong><p>${d.sleep.note}</p></div>`
+    :"";
   const elev=d.elev?`<div class="elev">
       <h4 class="smallcaps">Friday, by altitude</h4>
       <p class="sub">Tap any point on the line</p>
@@ -510,10 +512,10 @@ document.getElementById("days").innerHTML=DAYS.map((d,i)=>{
       <h2>${d.title}</h2>
       <figure class="plate"><div class="frame">${SCENES[d.art]()}</div><figcaption>${d.caption}</figcaption></figure>
       <p class="lede">${d.lede}</p>
-      <div class="hours">
+      ${d.noHours?"":`<div class="hours">
         <div class="hlabel"><span class="smallcaps">${d.carLabel}</span><span class="smallcaps">${d.arrive}</span></div>
         <div class="hbar"><span class="car" style="flex:${d.car}"></span><span class="free" style="flex:${free}"></span></div>
-      </div>
+      </div>`}
       ${elev}
       <ul class="hl">${d.hl.map(x=>`<li>${x}</li>`).join("")}</ul>
       ${sleep}

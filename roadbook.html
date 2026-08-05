@@ -192,14 +192,14 @@ footer{margin-top:40px;padding-top:16px;border-top:2px solid var(--ink);
     <h1>London<br>Gstaad<br><span>London</span></h1>
     <div class="sub">Six days · Étoges · Lake Annecy · Five alpine cols · Lavaux · Home via Troyes</div>
     <dl class="totals">
-      <div><dt>Total distance</dt><dd>≈ 2,530 km</dd></div>
+      <div><dt>Total distance</dt><dd>≈ 2,545 km</dd></div>
       <div><dt>Driving time</dt><dd>≈ 30 h</dd></div>
       <div><dt>Cols crossed</dt><dd>5</dd></div>
-      <div><dt>Longest day</dt><dd>Sun · 6h15</dd></div>
+      <div><dt>Longest day</dt><dd>Sun · 6h35</dd></div>
     </dl>
     <div class="alert">
       <h4>Seven days out — mid-August peak</h4>
-      <p>All five nights confirmed and paid — £1,764. Nothing left to book but tables. Wednesday and Thursday are hotel dinners; Saturday in Gstaad, Sunday lunch in Lavaux and Sunday dinner in Troyes still need calls. Numbers are in each day.</p>
+      <p>All five nights confirmed and paid — £1,764. Chiara flies out of Geneva on Sunday afternoon, so the last leg and Monday are yours alone. Nothing left to book but tables and her flight. Wednesday and Thursday are hotel dinners; Saturday in Gstaad, Sunday lunch in Lavaux and Sunday dinner in Troyes still need calls. Numbers are in each day.</p>
     </div>
   </header>
 
@@ -412,22 +412,23 @@ const DAYS = [
     map:{o:"Gstaad, Switzerland", w:["Lauenensee, Switzerland","Jaunpass, Switzerland"], d:"Gstaad, Switzerland"}
   },
   {
-    id:"sun", dow:"Sun", date:"16 August 2026", route:"Gstaad → Col des Mosses → Lavaux → Troyes",
-    tagline:"The longest day of the trip, and it reads like the gentlest. Two hours of it are lunch.",
-    depart:"09:30", arrive:"18:45",
+    id:"sun", dow:"Sun", date:"16 August 2026", route:"Gstaad → Lavaux → Geneva → Troyes",
+    tagline:"Two halves. Lunch above the lake with Chiara, then four hours north on your own.",
+    depart:"09:30", arrive:"19:10",
     legs:[
       {t:"09:30", cls:"pass", name:"Gstaad → Col des Mosses → Aigle → Saint-Saphorin", note:"A different pass from Friday's, which is the point. Terraced vineyards drop straight into Lake Geneva at the end.", km:70, dur:"1h30", summit:"Mosses 1,445 m"},
       {t:"11:15", cls:"local", name:"Lavaux — lunch", note:"Two hours on a terrace above the lake. The last unhurried thing you do.", km:0, dur:"2h00"},
-      {t:"13:30", cls:"swiss", name:"Lavaux → Lausanne → Vallorbe → border", note:"A9/A1, then off the motorway for the Jura crossing at Vallorbe. Fill up before you cross.", km:80, dur:"1h00"},
-      {t:"14:40", cls:"autoroute", name:"Pontarlier → Besançon → Dijon → Troyes", note:"A36 then A31/A5. Tolls resume at the French border.", km:400, dur:"3h45"}
+      {t:"13:30", cls:"swiss", name:"Lavaux → Lausanne → Geneva Airport", note:"A9 then A1 along the north shore. Fill the tank before you get there — Swiss fuel is cheaper and you won't want to stop again in the first hour.", km:90, dur:"1h05"},
+      {t:"14:45", cls:"local", name:"Geneva — drop Chiara", note:"Main terminal, Swiss side, arriving from Lausanne on the A1. Mid-August Sunday, so she needs the full two hours: anything from about 16:45 works.", km:0, dur:"0h15"},
+      {t:"15:00", cls:"autoroute", name:"Geneva → Bourg-en-Bresse → Dijon → Troyes", note:"A40 out of Geneva, A39 north to Dijon, then A31/A5. All motorway, no passes, nothing to see. Roughly four hours.", km:400, dur:"4h00"}
     ],
     notes:[
       {k:"book", h:"Lunch in Lavaux — 11:30", p:"Auberge de Rivaz <a href=\"tel:+41219461055\">+41 21 946 10 55</a> (Sun 11:30–15:00, terrace over the lake, on your route) or Café du Raisin at Saint-Saphorin <a href=\"tel:+41219211327\">+41 21 921 13 27</a> (opens 10:30, prettier village). Le Deck at Chexbres has the bigger panorama but doesn't open until 12:00 and parking is difficult — costs you half an hour."},
-      {k:"book", h:"Dinner in Troyes — 20:00", p:"The town's two best kitchens, Octave and Le Petit Basson, are both shut on Sundays. Open and worth having: Le Puits des Gourmets <a href=\"tel:+33675764780\">+33 6 75 76 47 80</a> (Lebanese, exceptional reviews, from 18:30), Le Tablier <a href=\"tel:+33351597802\">+33 3 51 59 78 02</a> (French brasserie, until 22:30), L'Illustré <a href=\"tel:+33325400088\">+33 3 25 40 00 88</a>."},
-      {k:"warn", h:"The 16th", p:"The weekend after Assumption is one of the heaviest travel weekends in France. Build in slack and don't plan the evening tightly."},
-      {k:"book", h:"Sunday dinner in Troyes", p:"The hotel doesn't list a restaurant, and this is a Sunday evening in August. Book somewhere in the medieval quarter before you leave Gstaad — it's a ten-minute walk from Quai Dampierre and the alternative is a closed-door tour of the old town at half past eight."}
+      {k:"book", h:"Dinner in Troyes — 20:30", p:"Book half eight, not eight — you're arriving alone after seven hours of driving on the worst traffic weekend of the year, and Le Puits des Gourmets serves until 22:00. The town's two best kitchens, Octave and Le Petit Basson, are both shut on Sundays. Open and worth having: Le Puits des Gourmets <a href=\"tel:+33675764780\">+33 6 75 76 47 80</a> (Lebanese, exceptional reviews, from 18:30), Le Tablier <a href=\"tel:+33351597802\">+33 3 51 59 78 02</a> (French brasserie, until 22:30), L'Illustré <a href=\"tel:+33325400088\">+33 3 25 40 00 88</a>."},
+      {k:"warn", h:"The 16th", p:"The weekend after Assumption is one of the heaviest travel weekends in France, and you'll be on the A40/A39 corridor mid-afternoon, which is exactly where it bites. Add an hour of tolerance to that four-hour leg before assuming anything about dinner."},
+      {k:"", h:"What the Geneva detour costs", p:"Almost nothing. The original Vallorbe–Besançon routing was 3h45 from the lunch table; via Geneva it's 1h05 plus 4h00. Fifteen minutes, and you get a proper goodbye instead of one at a motorway services."}
     ],
-    map:{o:"Gstaad, Switzerland", w:["Col des Mosses, Switzerland","Saint-Saphorin, Lavaux, Switzerland","Pontarlier, France","Dijon, France"], d:"Troyes, France"}
+    map:{o:"Gstaad, Switzerland", w:["Col des Mosses, Switzerland","Saint-Saphorin, Lavaux, Switzerland","Geneva Airport","Bourg-en-Bresse, France","Dijon, France"], d:"La Licorne Hotel Troyes"}
   },
   {
     id:"mon", dow:"Mon", date:"17 August 2026", route:"Troyes → London",
@@ -450,7 +451,8 @@ const DAYS = [
 const REF = [
   {h:"Still to book", urgent:true, items:[
     "Sunday lunch in Lavaux — Auberge de Rivaz or Café du Raisin, 11:30. An August Sunday terrace above the lake is not a walk-in.",
-    "Sunday dinner in Troyes — the two best places are closed. Le Puits des Gourmets is the pick.",
+    "Chiara's flight from Geneva, Sunday from about 16:45. Mid-August and eleven days out — this only gets worse.",
+    "Sunday dinner in Troyes for 20:30 — the two best places are closed. Le Puits des Gourmets is the pick.",
     "Saturday dinner in Gstaad, holiday weekend.",
     "Ring Arc-en-ciel: link the two reservations into one stay and hold the same room. Parking is already sorted.",
     "Le Shuttle both ways if not already done — and leave London by noon on the 12th.",
