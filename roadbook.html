@@ -341,16 +341,17 @@ const DAYS = [
   {
     id:"wed", dow:"Wed", date:"12 August 2026", route:"London → Château d'Étoges, Champagne",
     tagline:"Get south while the light lasts. The whole point of this night is that tomorrow is short.",
-    depart:"12:00 UK", arrive:"19:00",
+    depart:"11:00 UK", arrive:"19:05",
     legs:[
-      {t:"12:00", cls:"local", name:"London → Folkestone, Eurotunnel", note:"M20. Check in 45 min before departure.", km:120, dur:"1h30"},
-      {t:"13:50", cls:"rail", name:"Le Shuttle · Folkestone → Calais", note:"35 min crossing. Clocks go forward an hour on arrival.", km:50, dur:"0h35"},
-      {t:"15:40", cls:"autoroute", name:"Calais → Reims → Épernay → Étoges", note:"A26 as far as Reims, then the N51 south through Épernay and the D933 east into the village. Tolls ≈ €25.", km:335, dur:"3h15"}
+      {t:"11:00", cls:"local", name:"London → Folkestone, Eurotunnel", note:"M20, about 75 miles. Allow 1h45 in August rather than 1h30 — the M25 junction is the variable.", km:120, dur:"1h45"},
+      {t:"12:45", cls:"local", name:"Terminal — check-in and border controls", note:"Le Shuttle wants you 45–60 min ahead and check-in closes 30 min before departure. Arrive early and they will often put you on a earlier train at no cost.", km:0, dur:"1h00"},
+      {t:"13:45", cls:"rail", name:"Le Shuttle · Folkestone → Calais", note:"35 min crossing, plus an hour forward on the clocks, plus 15 min to disembark and clear the terminal. On the A26 at 15:35 CET.", km:50, dur:"0h50"},
+      {t:"15:35", cls:"autoroute", name:"Calais → Reims → Épernay → Étoges", note:"A26 as far as Reims, then the N51 south through Épernay and the D933 east into the village. One fuel stop built in. Tolls ≈ €25.", km:335, dur:"3h30"}
     ],
     notes:[
       {k:"book", h:"Reserve", p:"Dinner at the château, booked direct: <a href=\"tel:+33326593008\">+33 3 26 59 30 08</a>. Étoges is a village of a few hundred people — if their kitchen is full there is no plan B within twenty minutes. Book for 20:00."},
       {k:"", h:"Fuel", p:"Don't fill in the UK. First autoroute stop south of Calais; SP98 is standard at French motorway stations."},
-      {k:"warn", h:"Leave by noon", p:"This is twenty minutes longer than the original Sacy routing and the last hour is D-roads, not autoroute. Every hour of slippage from London lands directly on dinner."}
+      {k:"warn", h:"Leave by eleven, not noon", p:"Two things eat the day that are easy to miss: the terminal wants you an hour early, and the last stretch to Étoges is D-roads through Épernay rather than autoroute. An 11:00 departure gets you in at 19:05 for a 20:00 dinner. Noon does not."}
     ],
     map:{o:"London, UK", w:["Eurotunnel Folkestone Terminal","Calais, France","Épernay, France"], d:"Chateau d'Etoges, Etoges, France"}
   },
@@ -455,7 +456,7 @@ const REF = [
     "Sunday dinner in Troyes for 20:30 — the two best places are closed. Le Puits des Gourmets is the pick.",
     "Saturday dinner in Gstaad, holiday weekend.",
     "Ring Arc-en-ciel: link the two reservations into one stay and hold the same room. Parking is already sorted.",
-    "Le Shuttle both ways if not already done — and leave London by noon on the 12th.",
+    "Le Shuttle both ways if not already done. Book the outbound for around 13:45 and leave London at 11:00.",
     "Ask Arc-en-ciel how late breakfast runs on Saturday."
   ]},
   {h:"Book this week", items:[
