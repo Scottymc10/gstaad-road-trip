@@ -9,10 +9,11 @@
 <meta name="apple-mobile-web-app-title" content="Road Book">
 <link rel="apple-touch-icon" href="icon-roadbook.png">
 <link rel="icon" href="icon-roadbook.png">
+<link rel="manifest" href="manifest.webmanifest">
 <title>Road Book — London · Gstaad · London · 12–17 August 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,300&family=Saira+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   color-scheme: only light;
@@ -28,6 +29,7 @@
   --rail:#4A3A6B;
   --note:#9A6A12;
   --disp:'Saira Condensed',system-ui,sans-serif;
+  --serif:'Fraunces',Georgia,serif;
   --body:'IBM Plex Sans',system-ui,sans-serif;
   --data:'IBM Plex Mono',ui-monospace,monospace;
 }
@@ -47,25 +49,33 @@ body{
 .wrap{max-width:920px;margin:0 auto;padding:0 18px 90px;position:relative;z-index:1;background:#FFFFFF}
 
 /* ---------- plate ---------- */
-.plate{padding:34px 0 22px;border-bottom:2px solid var(--ink)}
-.plate .eyebrow{font-family:var(--data);font-size:11px;letter-spacing:.18em;
+.plate{padding:42px 0 28px;border-bottom:1px solid var(--rule);text-align:center}
+.plate .eyebrow{font-family:var(--data);font-size:11px;letter-spacing:.2em;
   text-transform:uppercase;color:var(--ink-2)}
-.plate h1{font-family:var(--disp);font-weight:700;text-transform:uppercase;
-  letter-spacing:.02em;line-height:.92;font-size:clamp(38px,9vw,74px);margin:10px 0 4px}
-.plate h1 span{color:var(--pass)}
+.plate h1{font-family:var(--serif);font-weight:200;letter-spacing:-.015em;
+  line-height:1.04;font-size:clamp(34px,7vw,58px);margin:20px 0 0;text-wrap:balance}
+.plate h1 em{font-style:italic;font-weight:300;color:var(--pass)}
+.orn{display:flex;align-items:center;justify-content:center;gap:14px;margin:20px 0 16px}
+.orn i{display:block;height:1px;width:56px;background:var(--rule)}
+.orn b{font-family:var(--serif);font-weight:300;font-style:italic;font-size:18px;color:var(--ink-2)}
 .plate .sub{font-family:var(--disp);font-weight:500;letter-spacing:.06em;
   text-transform:uppercase;font-size:clamp(14px,2.6vw,19px);color:var(--ink-2)}
-.totals{display:flex;flex-wrap:wrap;gap:26px;margin-top:22px}
+.docswitch{display:inline-block;margin:18px 0 0;font-family:var(--data);font-size:11px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--pass);text-decoration:none;
+  border-bottom:1px solid var(--rule);padding-bottom:3px}
+.docswitch:hover{border-color:var(--pass)}
+.totals{display:flex;flex-wrap:wrap;justify-content:center;gap:20px 34px;margin-top:26px}
 .totals div{min-width:92px}
 .totals dt{font-family:var(--data);font-size:10px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--ink-2);margin-bottom:2px}
 .totals dd{margin:0;font-family:var(--disp);font-weight:600;font-size:26px;line-height:1}
 
-/* ---------- alert ---------- */
-.alert{border-left:3px solid var(--pass);padding:10px 0 10px 14px;margin:24px 0 0}
-.alert h4{font-family:var(--data);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--pass);margin:0 0 5px;font-weight:600}
-.alert p{margin:0;font-size:14px;text-wrap:pretty}
+/* ---------- status note ---------- */
+.status{max-width:640px;margin:34px auto 4px}
+.status .statuslabel{font-family:var(--data);font-size:10.5px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--pass);margin:0 0 12px}
+.status p{margin:0;font-family:var(--body);font-size:15px;line-height:1.64;
+  color:var(--ink-2);text-wrap:balance}
 
 /* ---------- day nav ---------- */
 nav{position:sticky;top:0;z-index:20;background:#FFFFFF;
@@ -77,6 +87,8 @@ nav{position:sticky;top:0;z-index:20;background:#FFFFFF;
   text-transform:uppercase;font-size:13px;text-decoration:none;color:var(--ink-2);
   padding:5px 11px;border:1px solid var(--rule);border-radius:2px;background:#FFFFFF}
 .navrow a:hover,.navrow a:focus-visible{color:var(--ink);border-color:var(--ink)}
+.navrow a.navcheck{color:var(--pass)}
+.navrow a.navcheck:hover,.navrow a.navcheck:focus-visible{color:var(--pass);border-color:var(--pass)}
 
 /* ---------- day card ---------- */
 .day{border-bottom:1px solid var(--rule);padding:34px 0 30px;scroll-margin-top:56px}
@@ -158,15 +170,28 @@ td.km,td.dur{font-family:var(--data);font-size:12.5px;text-align:right;white-spa
 .staylinks a:hover,.staylinks a:focus-visible{background:var(--ink);color:#FFFFFF}
 
 /* ---------- reference ---------- */
-.ref{padding:36px 0 0}
+.ref{padding:36px 0 0;scroll-margin-top:56px}
 .ref h2{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.04em;
   font-size:clamp(24px,5vw,36px);margin:0 0 6px}
 .refgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:22px}
 .refblock h3{font-family:var(--data);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
   color:var(--ink-2);font-weight:500;margin:0 0 8px;padding-bottom:6px;border-bottom:1px solid var(--rule)}
 .refblock.urgent h3{color:var(--pass);border-bottom-color:var(--pass)}
-.refblock ul{margin:0;padding-left:16px}
-.refblock li{margin-bottom:7px;font-size:14px}
+.refprog{max-width:420px;margin:16px 0 0}
+.refbar{height:4px;border-radius:2px;background:var(--rule);overflow:hidden}
+.refbar i{display:block;height:100%;width:0;background:var(--pass);transition:width .3s}
+.reftxt{margin-top:9px;font-family:var(--data);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-2)}
+.refblock ul{margin:0;padding:0;list-style:none}
+.refblock li{margin-bottom:9px;font-size:14px}
+.refblock label{display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start;
+  cursor:pointer;line-height:1.5}
+.refblock input{appearance:none;width:15px;height:15px;margin:3px 0 0;border:1.5px solid var(--rule);
+  border-radius:3px;background:#FFFFFF;cursor:pointer;position:relative}
+.refblock input:checked{background:var(--pass);border-color:var(--pass)}
+.refblock input:checked::after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;
+  border:solid #FFFFFF;border-width:0 2px 2px 0;transform:rotate(42deg)}
+.refblock input:checked + span{color:var(--ink-2);text-decoration:line-through}
 .key{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px;font-family:var(--data);
   font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
 .key i{display:inline-block;width:9px;height:9px;border-radius:1px;margin-right:6px}
@@ -188,25 +213,31 @@ footer{margin-top:40px;padding-top:16px;border-top:2px solid var(--ink);
 <div class="wrap">
 
   <header class="plate">
-    <div class="eyebrow">Touring Road Book · 12–17 August 2026 · Scott &amp; Chiara</div>
-    <h1>London<br>Gstaad<br><span>London</span></h1>
+    <div class="eyebrow">Touring Road Book · Scott &amp; Chiara</div>
+    <h1>London · <em>Gstaad</em> · London</h1>
+    <div class="orn"><i></i><b>12–17 August 2026</b><i></i></div>
     <div class="sub">Six days · Étoges · Lake Annecy · Five alpine cols · Lavaux · Home via Troyes</div>
+    <div><a class="docswitch" href="index.html">← The illustrated guide</a></div>
     <dl class="totals">
       <div><dt>Total distance</dt><dd>≈ 2,545 km</dd></div>
       <div><dt>Driving time</dt><dd>≈ 30 h</dd></div>
       <div><dt>Cols crossed</dt><dd>5</dd></div>
       <div><dt>Longest day</dt><dd>Sun · 6h35</dd></div>
     </dl>
-    <div class="alert">
-      <h4>Seven days out — mid-August peak</h4>
-      <p>All five nights confirmed and paid — £1,764. Chiara flies out of Geneva on Sunday afternoon, so the last leg and Monday are yours alone. Nothing left to book but tables and her flight. Wednesday and Thursday are hotel dinners; Saturday in Gstaad, Sunday lunch in Lavaux and Sunday dinner in Troyes still need calls. Numbers are in each day.</p>
+    <div class="status">
+      <div class="statuslabel"><span id="statusdays">Days out</span> · Mid-August peak</div>
+      <p>All five nights are confirmed and paid. Chiara flies out of Geneva on Sunday afternoon, so the last leg and Monday are yours alone. Nothing left to book but tables and her flight — Wednesday and Thursday are hotel dinners; Saturday in Gstaad, Sunday lunch in Lavaux and Sunday dinner in Troyes still need calls. Numbers are in each day.</p>
     </div>
   </header>
 
   <main id="days"></main>
 
-  <section class="ref">
+  <section class="ref" id="checklist">
     <h2>Before you go</h2>
+    <div class="refprog">
+      <div class="refbar"><i id="reffill"></i></div>
+      <div class="reftxt" id="reftxt"></div>
+    </div>
     <div class="refgrid" id="ref"></div>
     <div class="key">
       <span><i style="background:#17457F"></i>French autoroute</span>
@@ -586,9 +617,42 @@ DAYS.forEach(d=>{
   navEl.appendChild(a);
 });
 
-document.getElementById("ref").innerHTML = REF.map(b=>`
-  <div class="refblock ${b.urgent?"urgent":""}"><h3>${b.h}</h3><ul>${b.items.map(i=>`<li>${i}</li>`).join("")}</ul></div>
-`).join("");
+const checkLink = document.createElement("a");
+checkLink.href = "#checklist";
+checkLink.textContent = "Checklist";
+checkLink.className = "navcheck";
+navEl.appendChild(checkLink);
+
+document.getElementById("ref").innerHTML = REF.map((b,bi)=>`
+  <div class="refblock ${b.urgent?"urgent":""}"><h3>${b.h}</h3><ul>
+    ${b.items.map((it,ii)=>`<li><label><input type="checkbox" data-id="${bi}-${ii}"><span>${it}</span></label></li>`).join("")}
+  </ul></div>`).join("");
+
+const refTotal = REF.reduce((sum,b)=>sum+b.items.length,0);
+function refProg(){
+  const done = document.querySelectorAll("#ref input:checked").length;
+  document.getElementById("reffill").style.width = (done/refTotal*100)+"%";
+  document.getElementById("reftxt").textContent = done===refTotal ? "All set" : done+" of "+refTotal+" done";
+}
+document.querySelectorAll("#ref input").forEach(i=>i.addEventListener("change",refProg));
+refProg();
+
+/* ---------- days-out label ---------- */
+(function(){
+  const el = document.getElementById("statusdays");
+  if (!el) return;
+  const depart = new Date("2026-08-12T00:00:00");
+  const days = Math.ceil((depart - new Date()) / 864e5);
+  el.textContent = days > 1 ? days + " days out"
+    : days === 1 ? "Tomorrow"
+    : days === 0 ? "Departure day"
+    : "On the road";
+})();
+
+/* ---------- offline (service worker) ---------- */
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+}
 </script>
 </body>
 </html>

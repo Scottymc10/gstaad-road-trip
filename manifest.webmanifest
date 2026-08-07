@@ -1,0 +1,12 @@
+{
+  "name": "Six Days to Gstaad",
+  "short_name": "Gstaad",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF8F2",
+  "theme_color": "#FBF8F2",
+  "icons": [
+    { "src": "icon-guide.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

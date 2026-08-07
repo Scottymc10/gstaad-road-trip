@@ -11,6 +11,7 @@
 <meta name="apple-mobile-web-app-title" content="Gstaad">
 <link rel="apple-touch-icon" href="icon-guide.png">
 <link rel="icon" href="icon-guide.png">
+<link rel="manifest" href="manifest.webmanifest">
 <title>Six Days to Gstaad — 12–17 August 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,6 +56,7 @@ h1,h2,h3,p,li,.rplace,.stayname{overflow-wrap:break-word}
   font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
 .navrow button:hover{color:var(--ink)}
 .navrow button.active{color:var(--ink);border-color:var(--gold);background:var(--card)}
+#navpack{margin-left:5px;color:var(--gold)}
 
 /* ---------- cover ---------- */
 .cover{padding:70px 0 0;text-align:center}
@@ -154,7 +156,7 @@ h1,h2,h3,p,li,.rplace,.stayname{overflow-wrap:break-word}
 .elevout p{margin:3px 0 0;font-size:14.5px;color:var(--ink-2)}
 
 /* ---------- pack ---------- */
-.pack{padding:70px 0 0;border-top:1px solid var(--rule);margin-top:56px}
+.pack{padding:70px 0 0;border-top:1px solid var(--rule);margin-top:56px;scroll-margin-top:64px}
 .pack h2{font-family:var(--disp);font-weight:300;font-size:clamp(28px,5.4vw,42px);
   margin:0 0 6px;text-align:center;letter-spacing:-.01em}
 .pack .sub{text-align:center;color:var(--ink-3);margin:0 0 20px}
@@ -174,10 +176,64 @@ h1,h2,h3,p,li,.rplace,.stayname{overflow-wrap:break-word}
 .packblock input:checked::after{content:"";position:absolute;left:4.5px;top:1px;width:4px;height:9px;
   border:solid #FFFDF9;border-width:0 2px 2px 0;transform:rotate(42deg)}
 .packblock input:checked + span{color:var(--ink-3);text-decoration:line-through}
+.packnote{max-width:660px;margin:0 auto 22px;background:var(--card);border:1px solid var(--rule);
+  border-left:2px solid var(--lake);border-radius:2px;padding:17px 22px}
+.packnote p{margin:0 0 10px;font-size:15.5px;color:var(--ink-2);text-wrap:pretty}
+.packnote p:last-child{margin:0}
+.packnote strong{color:var(--ink);font-weight:600}
+.packnote.end{border-left-color:var(--gold);margin:34px auto 0}
+.packperson{margin-top:46px}
+.packperson:first-of-type{margin-top:10px}
+.personhead{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap;
+  margin:0 0 22px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.personhead h3{font-family:var(--disp);font-weight:300;font-size:clamp(24px,4.4vw,32px);
+  margin:0;letter-spacing:-.01em}
+.personhead .ptag{font-family:var(--disp);font-style:italic;font-weight:300;
+  font-size:15.5px;color:var(--ink-3)}
+.blocknote{margin:-2px 0 12px;font-size:13px;font-style:italic;color:var(--ink-3);line-height:1.5}
 footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--rule);
   font-family:var(--disp);font-style:italic;font-weight:300;font-size:17px;
   color:var(--ink-2);text-align:center;line-height:1.7}
 .note{margin-top:10px;font-family:var(--body);font-style:normal;font-size:12.5px;color:var(--ink-3)}
+
+/* ---------- doc switch ---------- */
+.docswitch{display:inline-block;margin:28px 0 0;font-family:var(--body);font-size:11px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--lake);text-decoration:none;
+  border-bottom:1px solid var(--rule);padding-bottom:3px;transition:color .2s,border-color .2s}
+.docswitch:hover{color:var(--gold);border-color:var(--gold)}
+
+/* ---------- day extras (view + taste) ---------- */
+.extras{margin:2px 0 28px;display:grid;gap:14px}
+.xnote{margin:0;font-size:15px;color:var(--ink-2);padding-left:16px;
+  border-left:2px solid var(--gold);line-height:1.62}
+.xlabel{display:block;font-family:var(--body);font-size:10.5px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+
+/* ---------- soundtrack ---------- */
+.sound{padding:70px 0 0;border-top:1px solid var(--rule);margin-top:56px;text-align:center}
+.sound h2{font-family:var(--disp);font-weight:300;font-size:clamp(28px,5.4vw,42px);
+  margin:0 0 6px;letter-spacing:-.01em}
+.sound .sub{color:var(--ink-3);margin:0 0 18px}
+.soundlede{max-width:560px;margin:0 auto 24px;color:var(--ink-2);text-wrap:pretty}
+.playbtn{display:inline-block;font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--paper);background:var(--lake);text-decoration:none;
+  padding:13px 28px;border-radius:100px;transition:background .2s}
+.playbtn:hover{background:var(--gold)}
+.soundhint{color:var(--ink-3)}
+
+/* ---------- photo log ---------- */
+.photolog{padding:70px 0 0;border-top:1px solid var(--rule);margin-top:56px;text-align:center}
+.photolog h2{font-family:var(--disp);font-weight:300;font-size:clamp(28px,5.4vw,42px);
+  margin:0 0 6px;letter-spacing:-.01em}
+.photolog .sub{color:var(--ink-3);margin:0 0 30px}
+.photogrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;text-align:left}
+.photoframe{margin:0}
+.pslot{aspect-ratio:4/3;border:1px solid var(--rule);border-radius:2px;background:var(--card);
+  display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pslot span{font-family:var(--disp);font-weight:200;font-size:44px;color:var(--rule)}
+.pslot img{width:100%;height:100%;object-fit:cover;display:block}
+.photoframe figcaption{font-family:var(--disp);font-style:italic;font-weight:300;font-size:13.5px;
+  color:var(--ink-3);margin-top:10px}
 
 @media (max-width:820px){.routegrid{grid-template-columns:1fr;gap:30px}}
 @media (max-width:760px){
@@ -208,6 +264,7 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--rule);
     <div class="ornament"><i></i><b>12–17 August 2026</b><i></i></div>
     <div class="countdown" id="countdown"></div>
     <p class="intro">Champagne, Lake Annecy, five mountain passes, a weekend in the Swiss Alps — and a last lunch on a terrace above Lake Geneva before your flight out on Sunday.</p>
+    <div><a class="docswitch" href="roadbook.html">The detailed road book →</a></div>
     <div class="coverart" id="coverart"></div>
   </header>
 
@@ -228,18 +285,34 @@ footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--rule);
 
   <main id="days"></main>
 
+  <section class="sound" id="sound"></section>
+
   <section class="pack">
     <h2>What to bring</h2>
-    <p class="sub smallcaps">And what to expect</p>
+    <p class="sub smallcaps">Two lists, one shared</p>
+
+    <div class="packnote">
+      <p>Two lists below and one you share. The one that used to be a question — Friday's party — is settled: no set theme, but the vibe is <strong>mountain boho</strong>. Lean relaxed and textured over formal, earthy rather than black-tie, and remember it's alpine after dark — pack the look so it survives the temperature drop rather than fighting it.</p>
+      <p>And Chiara's bag has a second job — she flies straight on to Portugal from Geneva, so whatever she needs there rides in the same soft bag from Wednesday. That may drive her volume more than anything on this trip.</p>
+    </div>
+
     <div class="prog">
       <div class="progbar"><i id="progfill"></i></div>
       <div class="progtxt smallcaps" id="progtxt"></div>
     </div>
-    <div class="packgrid" id="pack"></div>
-    <footer>Five hotels, six days, one car.<br>One early start, and it is Friday.
-      <div class="note">Ticks are just for this visit — they won't be here next time you open it.</div>
-    </footer>
+
+    <div id="pack"></div>
+
+    <div class="packnote end">
+      <p>No laundry stop anywhere, so five nights means five nights of everything. And soft bags only — the frunk won't take a rigid case.</p>
+    </div>
   </section>
+
+  <section class="photolog" id="photolog"></section>
+
+  <footer>Five hotels, six days, one car.<br>One early start, and it is Friday.
+    <div class="note">Ticks are just for this visit — they won't be here next time you open it.</div>
+  </footer>
 
 </div>
 
@@ -372,6 +445,8 @@ const DAYS=[
       "The last stretch runs through <b>Épernay</b>, the heart of Champagne, on small roads rather than motorway.",
       "<b>Château d'Étoges</b> is genuinely surrounded by water — a seventeenth-century house with a moat, gardens and a spa.",
       "Dinner in the château at eight."],
+  view:"The moat and grounds before dinner — twenty minutes while the light goes, with water running the whole way round the house.",
+  taste:"You're in the heart of Champagne. This is the night to order the local fizz by name and not think about the drive tomorrow.",
   sleep:{name:"Château d'Étoges",note:"Champagne. Moated, seventeenth century, its own restaurant."}},
  {n:"02",when:"Thursday<br>13 August",art:"annecy",caption:"Lake Annecy from Menthon-Saint-Bernard",
   title:"The long one — ending in a <em>lake</em>",
@@ -382,6 +457,8 @@ const DAYS=[
       "<b>Le Palace de Menthon</b> — a Belle Époque hotel from 1906 with its own beach on the lake, a marina and a heated pool. Swim things somewhere easy to reach.",
       "At half seven we drive fifteen minutes up to the <b>Col de la Forclaz</b>, where the whole lake opens up below. Sunset is close to nine.",
       "Dinner back at the hotel at half eight."],
+  view:"Two of them: the Alps rising past Bourg-en-Bresse and staying on the horizon, then the Col de la Forclaz de Montmin at dusk with the whole lake laid out below.",
+  taste:"Lunch at Bourg-en-Bresse is Poulet de Bresse country — the only chicken in the world with its own appellation. Do it properly.",
   sleep:{name:"Le Palace de Menthon",note:"Lake Annecy. Lake-view room, private beach, heated pool."}},
  {n:"03",when:"Friday<br>14 August",art:"gstaad",caption:"The Saanenland, above Gstaad",elev:true,
   title:"Five hours, and only <em>225 kilometres</em>",
@@ -393,6 +470,8 @@ const DAYS=[
       "Over the Swiss border and up the <b>Col de la Forclaz</b>, then a long descent into the Rhône valley.",
       "Last climb is the <b>Col du Pillon</b>, dropping through Gsteig into Gstaad just after three — an hour to change.",
       "It's around fifteen degrees colder at the top of these than by the lake, so a layer you can peel off."],
+  view:"Coffee at the Col des Aravis with Mont Blanc dead ahead, and then the Forclaz descent into the Rhône valley — the best stretch of road all week.",
+  taste:"An early lunch in Chamonix under Mont Blanc itself. Keep it quick, but a tartiflette before four passes is no bad idea.",
   sleep:{name:"Hotel Arc-en-ciel, Gstaad",note:"Two nights. By the Eggli lift, ten minutes' walk from the village."}},
  {n:"04",when:"Saturday<br>15 August",art:"lauenen",caption:"Lauenensee, above the Saanen valley",
   title:"Nothing at all until <em>lunchtime</em>",
@@ -402,6 +481,8 @@ const DAYS=[
       "<b>Lauenensee</b> in the afternoon — twelve minutes up a dead-end valley to an alpine lake ringed with firs. The walk around it is about an hour and completely flat.",
       "Dinner in Gstaad, booked in advance because it's a holiday weekend.",
       "Walking shoes worth having for this one."],
+  view:"Lauenensee — twelve minutes up a dead-end valley to an alpine lake ringed with firs, mirror-flat if you get there early.",
+  taste:"This is raclette and Alpine-cheese country. Saturday dinner in Gstaad is the night to lean into it.",
   sleep:{name:"Hotel Arc-en-ciel, Gstaad",note:"Second night. Same room."}},
  {n:"05",when:"Sunday<br>16 August",art:"lavaux",caption:"The Lavaux terraces above Lake Geneva",
   title:"Lunch above <em>Lake Geneva</em>, then your flight",
@@ -412,6 +493,8 @@ const DAYS=[
       "Then along the north shore through Lausanne to <b>Geneva Airport</b> — about an hour.",
       "Dropped around quarter to three, so anything from about quarter to five works. Mid-August Sunday, so allow the full two hours.",
       "Keep your passport and case somewhere reachable — they want to come out at Geneva, not from under everything else."],
+  view:"The Lavaux terraces: eight hundred years of vineyard dropping straight into Lake Geneva, on the UNESCO list, and the last unhurried view of the trip.",
+  taste:"A glass of Chasselas grown on those terraces, over lunch above the water. The Lavaux whites don't travel, so drink them here.",
   sleep:{name:"Portugal, Sunday evening",label:"Where you land",note:"Wheels up from Geneva, and you're there the same night."}},
  {n:"06",when:"Monday<br>17 August",art:"oldtown",caption:"The Grand-Place, Arras",
   title:"And then — <em>separate ways</em>",
@@ -420,24 +503,46 @@ const DAYS=[
   hl:["Geneva to Troyes is about four hours, through Bourg-en-Bresse and Dijon.",
       "Monday is a straight run north with lunch on the <b>Grand-Place at Arras</b>, and London by around half four.",
       "Five hotels, five mountain passes, and one very good Friday between us."],
+  view:"The Grand-Place at Arras — a Flemish-Baroque square that's a reason to stop in its own right, not just a lunch of convenience.",
+  taste:"Lunch on the square. Andouillette if you're feeling brave, something gentler if you're not, and a coffee before the last push to Calais.",
   sleep:null}
 ];
 
 const PACK=[
- {h:"Don't bury these",items:["Swim things — you'll want them within ten minutes of arriving on Thursday.",
-   "Walking shoes for the lake at Lauenen on Saturday.",
-   "A warm layer for Friday. Around 15°C colder at the top of the passes than by the lake.",
-   "Sunglasses that work in flat mountain light."]},
- {h:"Evenings",items:["Menthon and Troyes both expect something smarter — one outfit covers both.",
-   "Gstaad on Friday is the late one. Saturday is more relaxed.",
-   "Étoges is a country château; comfortable rather than formal."]},
- {h:"For the car",items:["Thursday and Sunday are the two long ones, six hours each. Something to read, watch or listen to.",
-   "Friday is five hours but broken up all day by passes, so it doesn't feel like it.",
-   "A charger that reaches the passenger seat."]},
- {h:"Worth knowing",items:["Five hotels in six nights, so we live out of the bags. Only Gstaad is two nights.",
-   "Everything is booked and paid for. Only restaurant tables left.",
-   "Friday is the early one — half eight, because the party starts at four.",
-   "Passport, boarding pass and your case reachable on Sunday — you get out at Geneva, the car carries on to France."]}
+ {who:"Scott",blocks:[
+   {h:"Evenings",note:"Four dinners, and no two the same. Sunday in Troyes you're on your own — that's the night to repeat.",
+    items:["One jacket — unstructured, packs flat. Thursday at Menthon is the one that expects it.",
+      "Three shirts, one of them the good one for Thursday.",
+      "Smart trousers, plus chinos.",
+      "For Friday's party, lean relaxed — open collar, texture over tailoring. Mountain boho, not black-tie.",
+      "One pair of proper shoes. Loafers work everywhere here."]},
+   {h:"Days",items:["Five t-shirts or polos.",
+      "Shorts, and one pair of jeans or chinos for the car.",
+      "Swim shorts — Thursday, and keep them accessible.",
+      "A proper mid-layer for Friday. Fleece or a light down gilet: 10–15°C at the top of the passes against high twenties by the lake.",
+      "A light rain shell. August in the Alps means afternoon thunderstorms.",
+      "Trainers, plus something you'd walk an hour round a lake in."]}
+ ]},
+ {who:"Chiara",blocks:[
+   {h:"Evenings",note:"Three dinners of rising formality, plus the one you can't plan for yet.",
+    items:["Three dinner outfits — Étoges relaxed, Menthon the dressy one, Gstaad Saturday smart-casual.",
+      "Friday's party outfit — mountain boho. Flowy and textured, earthy tones over glam; the wrap below pulls double duty here.",
+      "A wrap or pashmina. Gstaad sits at 1,050 m and evenings drop to 10–12°C even in August — the single most-forgotten item on alpine trips, and it finishes the boho look on Friday.",
+      "Flats or block heels rather than stilettos — Troyes and Gstaad are both cobbled."]},
+   {h:"Days",items:["Swimwear and a cover-up for Thursday's beach and pool.",
+      "Four day outfits.",
+      "A warm layer for Friday — same reasoning as the passes above.",
+      "Walking shoes for Lauenen.",
+      "Sandals."]}
+ ]},
+ {who:"Both",tag:"the convertible tax",blocks:[
+   {h:"Roof down for hours",note:"The bit people get wrong.",
+    items:["High-factor sun cream, and reapply. You burn far faster in an open car, and more again at 1,500 m — left arm and shoulder take the worst of it.",
+      "Lip balm with SPF.",
+      "A hair tie and a scarf for Chiara. Caps just leave.",
+      "Sunglasses each — flat alpine light is genuinely punishing.",
+      "A light layer within reach even on warm days. At 70 mph with the roof down it's cooler than it looks from inside a hotel."]}
+ ]}
 ];
 
 /* ---------- countdown ---------- */
@@ -502,6 +607,10 @@ document.getElementById("days").innerHTML=DAYS.map((d,i)=>{
   const sleep=d.sleep
     ?`<div class="sleep"><span class="smallcaps">${d.sleep.label||"Where we sleep"}</span><strong>${d.sleep.name}</strong><p>${d.sleep.note}</p></div>`
     :"";
+  const extras=(d.view||d.taste)?`<div class="extras">
+    ${d.view?`<p class="xnote"><span class="xlabel">Pull over</span>${d.view}</p>`:""}
+    ${d.taste?`<p class="xnote"><span class="xlabel">On the table</span>${d.taste}</p>`:""}
+  </div>`:"";
   const elev=d.elev?`<div class="elev">
       <h4 class="smallcaps">Friday, by altitude</h4>
       <p class="sub">Tap any point on the line</p>
@@ -519,6 +628,7 @@ document.getElementById("days").innerHTML=DAYS.map((d,i)=>{
       </div>`}
       ${elev}
       <ul class="hl">${d.hl.map(x=>`<li>${x}</li>`).join("")}</ul>
+      ${extras}
       ${sleep}
     </div></section>`}).join("");
 
@@ -561,6 +671,10 @@ function goDay(n){
   el.scrollIntoView({behavior:"smooth",block:"start"});
   el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1400);
 }
+function goPack(){
+  const el=document.querySelector(".pack");if(!el)return;
+  el.scrollIntoView({behavior:"smooth",block:"start"});
+}
 document.querySelectorAll("#map .stop").forEach(g=>{
   const go=()=>goDay(+g.dataset.day);
   g.addEventListener("click",go);
@@ -570,9 +684,10 @@ document.querySelectorAll("#rlist button").forEach(b=>
   b.addEventListener("click",()=>goDay(+b.dataset.day)));
 
 document.getElementById("navrow").innerHTML=DAYS.map((d,i)=>
-  `<button data-day="${i+1}">${d.when.replace("<br>"," ").split(" ")[0].slice(0,3)} ${d.n}</button>`).join("");
+  `<button data-day="${i+1}">${d.when.replace("<br>"," ").split(" ")[0].slice(0,3)} ${d.n}</button>`).join("")
+  +`<button id="navpack" data-pack="1">Pack</button>`;
 document.querySelectorAll("#navrow button").forEach(b=>
-  b.addEventListener("click",()=>goDay(+b.dataset.day)));
+  b.addEventListener("click",()=>b.dataset.pack?goPack():goDay(+b.dataset.day)));
 
 const nav=document.getElementById("nav");
 new IntersectionObserver(es=>es.forEach(e=>nav.classList.toggle("on",!e.isIntersecting)),
@@ -588,13 +703,26 @@ DAYS.forEach((_,i)=>{
   }}),{rootMargin:"-45% 0px -50% 0px"}).observe(document.getElementById("day-"+(i+1)));
 });
 
+const packBtn=document.getElementById("navpack");
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
+  navBtns.forEach(b=>b.classList.remove("active"));
+  packBtn.classList.add("active");
+  document.querySelectorAll("#map .stop,#rlist button").forEach(x=>x.classList.remove("sel"));
+}}),{rootMargin:"-45% 0px -50% 0px"}).observe(document.querySelector(".pack"));
+
 /* ---------- packing checklist ---------- */
-const total=PACK.reduce((a,b)=>a+b.items.length,0);
-document.getElementById("pack").innerHTML=PACK.map((b,bi)=>`
-  <div class="packblock"><h3 class="smallcaps">${b.h}</h3><ul>
-    ${b.items.map((it,ii)=>`<li><label>
-      <input type="checkbox" data-id="${bi}-${ii}"><span>${it}</span></label></li>`).join("")}
-  </ul></div>`).join("");
+const total=PACK.reduce((a,p)=>a+p.blocks.reduce((n,b)=>n+b.items.length,0),0);
+document.getElementById("pack").innerHTML=PACK.map((person,pi)=>{
+  const grid=person.blocks.map((b,bi)=>`
+    <div class="packblock"><h3 class="smallcaps">${b.h}</h3>
+      ${b.note?`<p class="blocknote">${b.note}</p>`:""}
+      <ul>${b.items.map((it,ii)=>`<li><label>
+        <input type="checkbox" data-id="${pi}-${bi}-${ii}"><span>${it}</span></label></li>`).join("")}</ul>
+    </div>`).join("");
+  return `<div class="packperson">
+    <div class="personhead"><h3>${person.who}</h3>${person.tag?`<span class="ptag">${person.tag}</span>`:""}</div>
+    <div class="packgrid">${grid}</div>
+  </div>`}).join("");
 function prog(){
   const done=document.querySelectorAll("#pack input:checked").length;
   document.getElementById("progfill").style.width=(done/total*100)+"%";
@@ -602,6 +730,32 @@ function prog(){
 }
 document.querySelectorAll("#pack input").forEach(i=>i.addEventListener("change",prog));
 prog();
+
+/* ---------- soundtrack ---------- */
+/* Paste your Spotify or Apple Music playlist link between the quotes to light up the button. */
+const PLAYLIST="https://open.spotify.com/playlist/37i9dQZF1FwSF7SNiGigcm";
+document.getElementById("sound").innerHTML=`
+  <h2>The soundtrack</h2>
+  <p class="sub smallcaps">For the two long ones</p>
+  <p class="soundlede">Thursday and Sunday are six hours each, and unlike Friday the passes don't break them up. Queue something before you leave — signal comes and goes across the passes.</p>
+  ${PLAYLIST
+    ?`<a class="playbtn" href="${PLAYLIST}" target="_blank" rel="noopener">Open the playlist</a>`
+    :`<p class="soundhint smallcaps">Add a playlist link in the guide to light up this button</p>`}`;
+
+/* ---------- photo log ---------- */
+document.getElementById("photolog").innerHTML=`
+  <h2>Afterwards</h2>
+  <p class="sub smallcaps">One frame a day — filled in after the 17th</p>
+  <div class="photogrid">${DAYS.map((d,i)=>`
+    <figure class="photoframe">
+      <div class="pslot"><span>${d.n}</span></div>
+      <figcaption>${d.when.replace("<br>"," ")} · ${d.caption}</figcaption>
+    </figure>`).join("")}</div>`;
+
+/* ---------- offline (service worker) ---------- */
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+}
 </script>
 </body>
 </html>
